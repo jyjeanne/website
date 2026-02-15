@@ -269,7 +269,9 @@ function list(json) {
       'ul',
       { class: 'list-unstyled', id: 'list' },
       Object.values(json)
-        .filter((plugin) => !!plugin && !plugin.alias)
+        .filter(
+          (plugin) => !!plugin && !plugin.alias && plugin.length > 0 && plugin[0] && plugin[0].name,
+        )
         .sort((a, b) => a[0].name.localeCompare(b[0].name))
         .map((plugin) => plugin[0])
         .map((first) =>
